@@ -21,7 +21,7 @@ describe('Headling Component Suite', () => {
                     fName: 'test first name', 
                     lName: 'test last name',
                     email: 'test@email.com',
-                    age: false,
+                    age: 30,
                     onlineStatus: false
                 }]
             }
