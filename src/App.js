@@ -64,7 +64,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   // console.log(state)
-  return { posts: state.posts }
+  return { posts: state.postReducer.posts }
 }
 
 export default connect(mapStateToProps, { fetchPosts })(App);
