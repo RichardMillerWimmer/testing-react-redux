@@ -33,8 +33,7 @@ class App extends Component {
   }
 
   render() {
-
-    console.log(this.props)
+    const { posts } = this.props;
 
     const configButton = {
       buttonText: 'Get Posts',
@@ -47,6 +46,16 @@ class App extends Component {
       <main className='main'>
         <Headline header='Posts' desc='Click the button to render posts' tempArr={tempArr} />
         <Button {...configButton} />
+        {posts.length > 0 && 
+        <div>
+          {posts.map((post, index) => {
+            const { title, body } = post;
+            const configListItem = { title, desc: body };
+            return (
+              <ListItem key={title}{...configListItem}/>
+            )
+          })}
+          </div>}
       </main>
     </div>
   );
@@ -54,7 +63,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return { posts: state.posts }
 }
 
