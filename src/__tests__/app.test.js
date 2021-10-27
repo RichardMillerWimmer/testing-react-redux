@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import App from "../App";
 import { shallow } from 'enzyme';
 import { findByTestAttr, testStore } from '../utils/testing';
@@ -34,6 +34,20 @@ describe('App Component Suite', () => {
         
         const appComponent = findByTestAttr(component, 'appComponent');
         expect(appComponent.length).toBe(1);
+    })
+
+    it('Method should update state, toggle boolean', () => {
+        const componentInstance = component.instance();
+        componentInstance.toggleBtn();
+        const newState = componentInstance.state.showBtn;
+        expect(newState).toBe(false);
+    })
+
+    it('Should return incremented value', () => {
+        const componentInstance = component.instance();
+        const newValue = componentInstance.exampleMethod(1);
+        expect(newValue).toEqual(2);
+        expect(newValue).not.toBeNaN();
     })
 
 })

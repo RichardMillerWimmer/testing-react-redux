@@ -17,23 +17,40 @@ import './styles/app.scss';
     age: 24,
     onlineStatus: true
   }];
+
+  const initialState = {
+    showBtn: true
+  }
   
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      ...initialState
+    }
     this.fetch = this.fetch.bind(this);
   }
 
-  
+  toggleBtn() {
+    const { showBtn } = this.state;
+    this.setState({showBtn: !showBtn})
+  }
 
   fetch() {
     this.props.fetchPosts();
+    this.toggleBtn();
+  }
+
+  //For testing example purposes
+  exampleMethod(number) {
+    return number + 1
   }
 
   render() {
     const { posts } = this.props;
+    const { showBtn } = this.state;
 
     const configButton = {
       buttonText: 'Get Posts',
@@ -45,7 +62,9 @@ class App extends Component {
       <Header />
       <main className='main'>
         <Headline header='Posts' desc='Click the button to render posts' tempArr={tempArr} />
-        <Button {...configButton} />
+        { showBtn && 
+          <Button {...configButton} />
+        }
         {posts.length > 0 && 
         <div>
           {posts.map((post, index) => {
