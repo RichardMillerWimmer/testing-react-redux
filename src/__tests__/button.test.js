@@ -25,11 +25,13 @@ describe('Button Test Suite', () => {
     describe('Renders Button', () => {
         
         let component;
+        let mockFunc;
 
         beforeEach(() => {
+            mockFunc = jest.fn()
             const props = {
                 buttonText: 'Example Test',
-                emitEvent: () => {}
+                emitEvent: mockFunc
             }
             component = setup(props);
         });
@@ -39,6 +41,12 @@ describe('Button Test Suite', () => {
             expect(button.length).toBe(1);
         })
 
+        it('Should emit func on click event', () => {
+            const button = findByTestAttr(component, 'buttonComponent');
+            button.simulate('click');
+            const call = mockFunc.mock.calls.length;
+            expect(call).toBe(1)
+        })
     })
     
     
